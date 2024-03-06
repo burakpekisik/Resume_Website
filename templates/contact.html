@@ -1,8 +1,7 @@
-{% extends 'layout.html' %}
 {% load static %}
 
 
-{% block banner_area %}
+{% comment %}{% block banner_area %}
 
     <section class="banner_area">
         <div class="box_1620">
@@ -21,15 +20,17 @@
         </div>
     </section>
 
-{% endblock %}
+{% endblock %}{% endcomment %}
 
 
 
 
-{% block content %}
 
     <!--================Contact Area =================-->
     <section class="contact_area p_120">
+        <div class="welcome_text text-center">
+                <h4>Contact Me</h4>
+        </div>
         <div class="container">
 
             <div class="row">
@@ -125,10 +126,8 @@
     </div>
     <!--================End Contact Success and Error message Area =================-->
 
-{% endblock %}
 
 
-{% block extra_scripts %}
 
     <script>
         $(document).ready(function () {
@@ -155,4 +154,3 @@
         });
     </script>
 
-{% endblock %}

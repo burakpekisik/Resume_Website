@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from core.models import GeneralSetting, ImageSetting, Skill, Experience, Education, SocialMedia, Document
+from core.models import GeneralSetting, ImageSetting, Skill, Experience, Education, SocialMedia, Document, Project
 
 
 # Create your views here.
@@ -41,6 +41,9 @@ def layout(request):
     home_banner_image = get_image_setting('home_banner_image')
     site_favicon = get_image_setting('site_favicon')
 
+    projects = Project.objects.all()
+    projects_count = projects.count()
+
     social_medias = SocialMedia.objects.all()
     documents = Document.objects.all()
 
@@ -62,6 +65,8 @@ def layout(request):
         'site_favicon': site_favicon,
         'documents': documents,
         'social_medias': social_medias,
+        'projects': projects,
+        'projects_count': projects_count,
     }
     return context
 
@@ -77,6 +82,7 @@ def index(request):
         'skills': skills,
         'experiences': experiences,
         'educations': educations,
+        'projects_count': layout(request)['projects_count'],
     }
 
     return render(request, 'index.html', context=context)

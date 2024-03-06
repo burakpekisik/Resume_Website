@@ -248,3 +248,39 @@ class Document(AbstractModel):
         verbose_name = 'Document'
         verbose_name_plural = 'Documents'
         ordering = ('order',)
+
+
+class Project(AbstractModel):
+    order = models.IntegerField(
+        default=0,
+        verbose_name='Order',
+    )
+    name = models.CharField(
+        default='',
+        max_length=254,
+        blank=True,
+        verbose_name='Name',
+        help_text='This is variable of the setting.',
+    )
+    description = models.CharField(
+        default='',
+        max_length=254,
+        blank=True,
+        verbose_name='Description',
+        help_text='',
+    )
+    file = models.ImageField(
+        default='',
+        verbose_name='Image',
+        help_text='',
+        blank=True,
+        upload_to='images/',
+    )
+
+    def __str__(self):
+        return f'Project Setting: {self.name}'
+
+    class Meta:
+        verbose_name = 'Project Setting'
+        verbose_name_plural = 'Project Settings'
+        ordering = ('order',)

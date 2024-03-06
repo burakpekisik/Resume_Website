@@ -76,3 +76,13 @@ class DocumentAdmin(admin.ModelAdmin):
 
     class Meta:
         model = Document
+
+
+@admin.register(Project)
+class ProjectAdmin(admin.ModelAdmin):
+    list_display = ['id', 'order', 'name', 'description', 'file', 'updated_date', 'created_date']
+    search_fields = ['name', 'description', 'file']
+    list_editable = ['order', 'description', 'file']
+
+    class Meta:
+        model = Project

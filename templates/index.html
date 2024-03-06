@@ -46,10 +46,12 @@
     <!--================Welcome Area =================-->
     <section class="welcome_area p_120">
         <div class="container">
+            <div class="welcome_text text-center">
+                <h4>About Myself</h4>
+            </div>
             <div class="row welcome_inner">
                 <div class="col-lg-6">
-                    <div class="welcome_text">
-                        <h4>About Myself</h4>
+                    <div class="welcome_text text-center">
                         <p>{{ about_myself_welcome|linebreaks  }}</p>
 
                     </div>
@@ -80,6 +82,28 @@
         </div>
     </section>
     <!--================End Welcome Area =================-->
+
+    <div class="welcome_text text-center" ><h4>My Portfolio</h4></div>
+    <div class="slider-body">
+        <div class="slideshow-container">
+            {% for project in projects %}
+                <div class="mySlides fade-slider">
+                    <div class="numbertext">{{ project.order }} / {{ projects_count }}</div>
+                    <img src="{{ project.file.url }}" style="width: 100%">
+                </div>
+            {% endfor %}
+
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <br>
+        <div style="text-align: center">
+            {% for project in projects %}
+                <span class="dot" onclick="currentSlide({{ project.order }})"></span>
+            {% endfor %}
+        </div>
+    </div>
+
 
     <!--================My Tabs Area =================-->
     <section class="mytabs_area p_120">
@@ -149,6 +173,5 @@
         </div>
     </section>
     <!--================End My Tabs Area =================-->
-
-
+{% include 'contact.html' %}
 {% endblock %}
