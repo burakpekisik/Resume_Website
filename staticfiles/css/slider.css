@@ -10,11 +10,36 @@
     width: 60%;
     margin: auto;
     display: none;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.mySlides:hover {
+    width: 60%;
+    margin: auto;
+    display: none;
 }
 
 .mySlides img {
     vertical-align: middle;
+    transition: .2s linear;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    cursor: pointer;
+}
+
+.mySlides img:hover {
+    transition: .2s linear;
+    transform: scale(1.1);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    cursor: pointer;
+}
+
+.popup-image span {
+    position: absolute;
+    top: 12px; right: 12px;
+    font-size: 40px;
+    font-weight: bolder;
+    color: #fff;
+    cursor: pointer;
+    z-index: 100;
 }
 
 .slideshow-container {
@@ -86,6 +111,26 @@
     animation-duration: 1.5s;
 }
 
+.popup-image {
+    position: fixed;
+    top:0; left:0;
+    background: rgba(0,0,0,.9);
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    display: none;
+}
+
+.popup-image img {
+    position: absolute;
+    top: 50%; left:50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #fff;
+    border-radius: 5px;
+    width: 750px;
+    object-fit: cover;
+}
+
 
 @-webkit-keyframes fade {
     from {opacity: .4}
@@ -115,5 +160,11 @@
 
     .prev .next, .text {
         font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .popup-image img {
+        width: 95%;
     }
 }
