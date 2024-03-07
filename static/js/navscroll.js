@@ -1,6 +1,6 @@
 let sections = document.querySelectorAll('section');
 let navLinks = document.querySelectorAll('div ul li a');
-
+/*Deneme*/
 window.onscroll = () => {
     sections.forEach(sec => {
         let top = window.scrollY;
