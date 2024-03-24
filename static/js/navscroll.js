@@ -1,20 +1,44 @@
 document.addEventListener("DOMContentLoaded", function() {
-    let sections = document.querySelectorAll('section');
-    let navLinks = document.querySelectorAll('div ul li a');
-    
-    window.onscroll = () => {
-        sections.forEach(sec => {
-            let top = window.scrollY;
-            let offset = sec.offsetTop;
-            let height = sec.offsetHeight;
-            let id = sec.getAttribute('id');
-    
-            if (top >= offset && top < offset + height) {
-                navLinks.forEach(links => {
-                    links.classList.remove('active');
-                    document.querySelector('div ul li a[href*=' + id + ']').classList.add('active');
+    let scrollLinks = document.querySelectorAll('.scroll-link');
+
+    scrollLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            let targetId = this.getAttribute('data-target');
+            let targetSection = document.querySelector(targetId);
+
+            if (targetSection) {
+                let offsetTop = targetSection.offsetTop;
+
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
                 });
             }
         });
-    }
+    });
+
+    // Highlight active navbar link based on scroll position
+    let sections = document.querySelectorAll('section');
+    let navLinks = document.querySelectorAll('.scroll-link');
+
+    window.addEventListener('scroll', () => {
+        let currentSection = '';
+
+        sections.forEach(sec => {
+            const sectionTop = sec.offsetTop;
+            const sectionHeight = sec.offsetHeight;
+
+            if (pageYOffset >= sectionTop - sectionHeight * 0.25) {
+                currentSection = sec.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-target') === `#${currentSection}`) {
+                link.classList.add('active');
+            }
+        });
+    });
 });

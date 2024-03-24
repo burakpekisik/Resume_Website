@@ -1,6 +1,8 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
+from resume.custom_storage import DocumentStorage, ImageSettingStorage, ProjectSettingStorage
+
 
 # Create your models here.
 
@@ -72,7 +74,7 @@ class ImageSetting(AbstractModel):
         verbose_name='Image',
         help_text='',
         blank=True,
-        upload_to='images/',
+        storage=ImageSettingStorage(),
     )
 
     def __str__(self):
@@ -238,7 +240,7 @@ class Document(AbstractModel):
         verbose_name='File',
         help_text='',
         blank=True,
-        upload_to='documents/'
+        storage=DocumentStorage(),
     )
 
     def __str__(self):
@@ -274,7 +276,7 @@ class Project(AbstractModel):
         verbose_name='Image',
         help_text='',
         blank=True,
-        upload_to='images/',
+        storage=ProjectSettingStorage(),
     )
 
     def __str__(self):

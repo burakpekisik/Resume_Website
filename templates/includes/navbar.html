@@ -15,15 +15,15 @@
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 							<ul class="nav navbar-nav menu_nav ml-auto">
-								<li class="nav-item active"><a class="nav-link active" href="#home">Home</a></li>
-								<li class="nav-item active"><a class="nav-link" href="#about">About Myself</a></li>
-								<li class="nav-item active"><a class="nav-link" href="#portfolio">My Portfolio</a></li>
-								<li class="nav-item active"><a class="nav-link" href="#expandedu">Experiences and Education</a></li>
-								<li class="nav-item active"><a class="nav-link" href="#contact">Contact Me</a></li>
+                                <li class="nav-item active"><a class="nav-link active scroll-link" data-target="#home" href="#home">Home</a></li>
+                                <li class="nav-item active"><a class="nav-link scroll-link" data-target="#about" href="#about">About Myself</a></li>
+                                <li class="nav-item active"><a class="nav-link scroll-link" data-target="#portfolio" href="#portfolio">My Portfolio</a></li>
+                                <li class="nav-item active"><a class="nav-link scroll-link" data-target="#expandedu" href="#expandedu">Experiences and Education</a></li>
+                                <li class="nav-item active"><a class="nav-link scroll-link" data-target="#contact" href="#contact">Contact Me</a></li>
                                 {% for document in documents %}
                                     <li class="nav-item"><a class="nav-link" href="{{ document.file.url }}" target="_blank"><i class="fa fa-download" style="margin-right: 5px"></i>{{ document.button_text }}</a></li>
                                 {% endfor %}
-							</ul>
+                            </ul>
 						</div>
 					</div>
             	</nav>
