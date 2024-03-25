@@ -1,8 +1,42 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from core.models import GeneralSetting, ImageSetting, Skill, Experience, Education, SocialMedia, Document, Project
-
+from contact.models import Message
+from contact.forms import ContactForm
+from django.http import JsonResponse
 
 # Create your views here.
+def contact_form(request):
+    if request.POST:
+        contact_form = ContactForm(request.POST or None)
+        if contact_form.is_valid():
+            name = request.POST.get('name')
+            email = request.POST.get('email')
+            subject = request.POST.get('subject')
+            message = request.POST.get('message')
+
+            Message.objects.create(
+                name=name,
+                email=email,
+                subject=subject,
+                message=message,
+            )
+
+            contact_form.send_mail()
+
+            success = True
+            message = 'Contact from sent successfully.'
+        else:
+            success = False
+            message = 'Request method is not valid.'
+    else:
+        success = False
+        message = 'Request method is not valid.'
+
+    context = {
+        'success': success,
+        'message': message,
+    }
+    return JsonResponse(context)
 
 def get_general_setting(parameter):
     try:
@@ -77,12 +111,14 @@ def index(request):
 
     experiences = Experience.objects.all().order_by('-start_date')
     educations = Education.objects.all().order_by('-start_date')
+    contact_form = ContactForm(request.POST or None)
 
     context = {
         'skills': skills,
         'experiences': experiences,
         'educations': educations,
         'projects_count': layout(request)['projects_count'],
+        'contact_form': contact_form,
     }
 
     return render(request, 'index.html', context=context)
